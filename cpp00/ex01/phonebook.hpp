@@ -10,8 +10,8 @@ class Phonebook
 	std::string	book[8][5];
 
 	public :
-	void	find_users();
-	void	get_user_info();
+		void	find_users();
+		void	get_user_info();
 };
 
 #endif
