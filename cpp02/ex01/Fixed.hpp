@@ -4,33 +4,32 @@
 #include <iostream>
 #include <cmath>
 
-static const int scale = 8;
-
 class Fixed
 {
 	public :
+	/*constructs*/
 		Fixed();
 		Fixed(Fixed const &);
-		Fixed(const int integer);
-		Fixed(const float floating);
+		Fixed(const int int_nbr);
+		Fixed(const float float_nbr);
 
-		Fixed	&operator=(Fixed const &);
-		Fixed	&operator<<(Fixed const &);
-
-		float	toFloat(void);
-		int		toInt(void);
-		~Fixed();
-
+	/*methods*/
+		float	toFloat(void) const;
+		int		toInt(void) const;
+		void	intToFixed(const int int_nbr);
+		void	floatToFixed(const float float_nbr);	
 		int		getRawBits(void) const;
 		void	setRawBits(int const raw);
-	private :
-		int					_nbr;
-		static const int	scale;
 
-		void	setIntToFixed(const int integer);
-		int		fixedToInt(void) const;
-		void	setFloatToFixed(const float floating);
-		float	fixedTofloat(void) const;
+	/*overloads*/
+		Fixed				&operator=(Fixed const &);
+		friend std::ostream	&operator<<(std::ostream &c_out, Fixed const &model);
+
+		~Fixed();
+
+	private :
+		static const int	scale = 8;
+		int					_nbr;
 };
 
 #endif

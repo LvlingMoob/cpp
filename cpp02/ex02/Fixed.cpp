@@ -1,5 +1,7 @@
 #include "Fixed.hpp"
 
+//#########################################################################################
+// ------------------------------------------------------------------------------CONSTRUCTS
 Fixed::Fixed()
 {
 	std::cout << "Default constructor called" << std::endl;
@@ -11,9 +13,30 @@ Fixed::Fixed(Fixed const &model)
 	*this = model;
 }
 
-Fixed::~Fixed()
+Fixed::Fixed(const int int_nbr)
 {
-	std::cout << "Destructor called" << std::endl;
+	std::cout << "Int constructor called" << std::endl;
+	intToFixed(int_nbr);
+
+}
+
+Fixed::Fixed(const float float_nbr)
+{
+	std::cout << "Float constructor called" << std::endl;
+	floatToFixed(float_nbr);
+}
+
+
+//#########################################################################################
+// --------------------------------------------------------------------------PUBLIC METHODS
+float	Fixed::toFloat(void) const
+{
+	return (((float)this->_nbr) / ((float)(1 << this->scale)));
+}
+
+int 	Fixed::toInt(void) const
+{
+	return (this->_nbr >> this->scale);
 }
 
 int	Fixed::getRawBits(void) const
@@ -25,8 +48,22 @@ int	Fixed::getRawBits(void) const
 void	Fixed::setRawBits(int const raw)
 {
 	std::cout << "setRawBits member function called" << std::endl;
+	this->_nbr = raw;
 }
 
+void	Fixed::intToFixed(const int int_nbr)
+{
+	this->_nbr = int_nbr << this->scale;
+}
+
+void	Fixed::floatToFixed(const float float_nbr)
+{
+	this->_nbr = float_nbr * ((float)(1 << this->scale));
+}
+
+
+//#########################################################################################
+// -----------------------------------------------------------------------OPERATOR OVERLOAD
 Fixed	&Fixed::operator=(Fixed const &model)
 {
 	std::cout << "Assignation operator called" << std::endl;
@@ -34,72 +71,17 @@ Fixed	&Fixed::operator=(Fixed const &model)
 	return (*this);
 }
 
-Fixed	&Fixed::operator+(Fixed const &model)
+
+std::ostream &operator<<(std::ostream &c_out, Fixed const &model)
 {
-	std::cout << "Assignation operator called" << std::endl;
-	this->_nbr = model.getRawBits();
-	return (*this);
+	c_out << (double)(model._nbr) / ((double)(1 << model.scale));
+	return (c_out);
 }
 
-Fixed	&Fixed::operator-(Fixed const &model)
-{
-	std::cout << "Assignation operator called" << std::endl;
-	this->_nbr = model.getRawBits();
-	return (*this);
-}
 
-Fixed	&Fixed::operator*(Fixed const &model)
+//#########################################################################################
+// --------------------------------------------------------------------------------DESTRUCT
+Fixed::~Fixed()
 {
-	std::cout << "Assignation operator called" << std::endl;
-	this->_nbr = model.getRawBits();
-	return (*this);
-}
-
-Fixed	&Fixed::operator/(Fixed const &model)
-{
-	std::cout << "Assignation operator called" << std::endl;
-	this->_nbr = model.getRawBits();
-	return (*this);
-}
-
-Fixed	&Fixed::operator>(Fixed const &model)
-{
-	std::cout << "Assignation operator called" << std::endl;
-	this->_nbr = model.getRawBits();
-	return (*this);
-}
-
-Fixed	&Fixed::operator<(Fixed const &model)
-{
-	std::cout << "Assignation operator called" << std::endl;
-	this->_nbr = model.getRawBits();
-	return (*this);
-}
-
-Fixed	&Fixed::operator>=(Fixed const &model)
-{
-	std::cout << "Assignation operator called" << std::endl;
-	this->_nbr = model.getRawBits();
-	return (*this);
-}
-
-Fixed	&Fixed::operator<=(Fixed const &model)
-{
-	std::cout << "Assignation operator called" << std::endl;
-	this->_nbr = model.getRawBits();
-	return (*this);
-}
-
-Fixed	&Fixed::operator==(Fixed const &model)
-{
-	std::cout << "Assignation operator called" << std::endl;
-	this->_nbr = model.getRawBits();
-	return (*this);
-}
-
-Fixed	&Fixed::operator!=(Fixed const &model)
-{
-	std::cout << "Assignation operator called" << std::endl;
-	this->_nbr = model.getRawBits();
-	return (*this);
+	std::cout << "Destructor called" << std::endl;
 }

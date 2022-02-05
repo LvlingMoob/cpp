@@ -1,6 +1,7 @@
 #include "Fixed.hpp"
 
-// CONSTRUCT
+//#########################################################################################
+// ------------------------------------------------------------------------------CONSTRUCTS
 Fixed::Fixed()
 {
 	std::cout << "Default constructor called" << std::endl;
@@ -12,30 +13,30 @@ Fixed::Fixed(Fixed const &model)
 	*this = model;
 }
 
-Fixed::Fixed(const int integer)
+Fixed::Fixed(const int int_nbr)
 {
 	std::cout << "Int constructor called" << std::endl;
+	intToFixed(int_nbr);
 
 }
 
-Fixed::Fixed(const float floating)
+Fixed::Fixed(const float float_nbr)
 {
 	std::cout << "Float constructor called" << std::endl;
-
+	floatToFixed(float_nbr);
 }
 
 
-// PUBLIC FUNCTION
-float	toFloat(void)
+//#########################################################################################
+// --------------------------------------------------------------------------PUBLIC METHODS
+float	Fixed::toFloat(void) const
 {
-	std::cout << "toFloat function" << std::endl;
-	return (0);
+	return (((float)this->_nbr) / ((float)(1 << this->scale)));
 }
 
-int 	toInt(void)
+int 	Fixed::toInt(void) const
 {
-	std::cout << "toInt function" << std::endl;
-	return (0);
+	return (this->_nbr >> this->scale);
 }
 
 int	Fixed::getRawBits(void) const
@@ -47,10 +48,22 @@ int	Fixed::getRawBits(void) const
 void	Fixed::setRawBits(int const raw)
 {
 	std::cout << "setRawBits member function called" << std::endl;
+	this->_nbr = raw;
+}
+
+void	Fixed::intToFixed(const int int_nbr)
+{
+	this->_nbr = int_nbr << this->scale;
+}
+
+void	Fixed::floatToFixed(const float float_nbr)
+{
+	this->_nbr = (double)float_nbr * ((double)(1 << this->scale));
 }
 
 
-// OPERATOR OVERLOAD
+//#########################################################################################
+// -----------------------------------------------------------------------OPERATOR OVERLOAD
 Fixed	&Fixed::operator=(Fixed const &model)
 {
 	std::cout << "Assignation operator called" << std::endl;
@@ -58,35 +71,16 @@ Fixed	&Fixed::operator=(Fixed const &model)
 	return (*this);
 }
 
-Fixed &Fixed::operator<<(Fixed const &model)
+
+std::ostream &operator<<(std::ostream &c_out, Fixed const &model)
 {
-	return (*this);
+	c_out << (double)(model._nbr) / ((double)(1 << model.scale));
+	return (c_out);
 }
 
 
-// PRIVATE
-void	Fixed::setIntToFixed(const int integer)
-{
-	;
-}
-
-int Fixed::fixedToInt(void) const
-{
-	return (0);
-}
-
-void	Fixed::setFloatToFixed(const float floating)
-{
-	;
-}
-
-float	Fixed::fixedTofloat(void) const
-{
-	return (0);
-}
-
-
-// DESTRUCT
+//#########################################################################################
+// --------------------------------------------------------------------------------DESTRUCT
 Fixed::~Fixed()
 {
 	std::cout << "Destructor called" << std::endl;

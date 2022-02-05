@@ -3,8 +3,6 @@
 
 #include <iostream>
 
-static const int scale = 8;
-
 class Fixed
 {
         public :
@@ -17,7 +15,7 @@ class Fixed
                 void    setRawBits(int const raw);
         private :
                 int                     _nbr;
-                static const int        scale;
+                static const int        scale = 8;
 
 };
 
