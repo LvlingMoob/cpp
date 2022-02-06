@@ -17,7 +17,6 @@ Fixed::Fixed(const int int_nbr)
 {
 	std::cout << "Int constructor called" << std::endl;
 	intToFixed(int_nbr);
-
 }
 
 Fixed::Fixed(const float float_nbr)
@@ -58,26 +57,38 @@ void	Fixed::intToFixed(const int int_nbr)
 
 void	Fixed::floatToFixed(const float float_nbr)
 {
-	this->_nbr = float_nbr * ((float)(1 << this->scale));
+	this->_nbr = (double)float_nbr * ((double)(1 << this->scale));
 }
 
 
 //#########################################################################################
 // -----------------------------------------------------------------------OPERATOR OVERLOAD
-Fixed	&Fixed::operator=(Fixed const &model)
-{
-	std::cout << "Assignation operator called" << std::endl;
-	this->_nbr = model.getRawBits();
-	return (*this);
-}
-
-
 std::ostream &operator<<(std::ostream &c_out, Fixed const &model)
 {
-	c_out << (double)(model._nbr) / ((double)(1 << model.scale));
+	// c_out << (double)(model._nbr) / ((double)(1 << model.scale));
+	c_out << model.toFloat();
 	return (c_out);
 }
 
+void	Fixed::operator++(int)
+{
+	this->setRawBits(this->_nbr + (1 << this->scale));
+}
+
+void	Fixed::operator--(int)
+{
+	this->setRawBits(this->_nbr - (1 << this->scale));
+}
+
+void	Fixed::operator++()
+{
+	this->setRawBits(this->_nbr + (1 << this->scale));
+}
+
+void	Fixed::operator--()
+{
+	this->setRawBits(this->_nbr - (1 << this->scale));
+}
 
 //#########################################################################################
 // --------------------------------------------------------------------------------DESTRUCT

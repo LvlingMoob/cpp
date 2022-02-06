@@ -27,6 +27,7 @@ class Fixed
 
 		~Fixed();
 
+
 	private :
 		static const int	scale = 8;
 		int					_nbr;
