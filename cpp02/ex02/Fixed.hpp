@@ -2,7 +2,6 @@
 #define FIXED_HPP
 
 #include <iostream>
-#include <cmath>
 	
 class Fixed
 {
@@ -42,11 +41,8 @@ class Fixed
 		void						operator++();
 		void						operator--();
 
-
 	/*with templates*/
-
 		/* **************************** ASSIGNATION OPERATION **************************** */
-	
 	// '=' operator --------------------------------------------------------------------;
 		Fixed			&operator=(const Fixed &model)
 		{
@@ -72,7 +68,6 @@ class Fixed
 			}
 		}
 
-	
 	// '+' operator --------------------------------------------------------------------;
 			friend Fixed			operator+(Fixed &model1, const Fixed &model2)
 			{
@@ -115,7 +110,6 @@ class Fixed
 					return (value = (double)tmp / (double)(1 << model.scale));
 				}
 			}
-	
 
 	// '-' operator --------------------------------------------------------------------;
 			friend Fixed			operator-(Fixed &model1, const Fixed &model2)
@@ -160,7 +154,6 @@ class Fixed
 				}
 			}
 
-	
 	// '*' operator --------------------------------------------------------------------;
 			friend Fixed			operator*(Fixed &model1, const Fixed &model2)
 			{
@@ -191,7 +184,6 @@ class Fixed
 				value = value * model.toFloat();
 				return (value);
 			}
-	
 
 	// '/' operator --------------------------------------------------------------------;
 			friend Fixed			operator/(Fixed &model1, const Fixed &model2)
@@ -217,7 +209,6 @@ class Fixed
 				return (value = value / model.toFloat());
 			}
 
-	
 	// '+=' operator -------------------------------------------------------------------;
 			friend Fixed			&operator+=(Fixed &model1, const Fixed &model2)
 			{
@@ -261,7 +252,6 @@ class Fixed
 				}
 			}
 
-	
 	// '-=' operator -------------------------------------------------------------------;
 			friend Fixed			&operator-=(Fixed &model1, const Fixed &model2)
 			{
@@ -305,9 +295,8 @@ class Fixed
 				}
 			}
 
-	
+
 			/* ************************** COMPARISON  CONDITION ************************** */
-	
 	// '<' operator --------------------------------------------------------------------;			
 			friend bool				operator<(const Fixed &model1, const Fixed &model2)
 			{
@@ -346,7 +335,6 @@ class Fixed
 				}
 			}
 
-	
 	// '>' operator --------------------------------------------------------------------;
 			friend bool				operator>(const Fixed &model1, const Fixed &model2)
 			{
@@ -385,7 +373,6 @@ class Fixed
 				}
 			}
 
-	
 	// '<=' operator -------------------------------------------------------------------;
 			friend bool				operator<=(const Fixed &model1, const Fixed &model2)
 			{
@@ -424,7 +411,6 @@ class Fixed
 				}
 			}
 
-	
 	// '>=' operator -------------------------------------------------------------------;
 			friend bool				operator>=(const Fixed &model1, const Fixed &model2)
 			{
@@ -463,7 +449,6 @@ class Fixed
 				}
 			}
 
-	
 	// '==' operator -------------------------------------------------------------------;
 			friend bool				operator==(const Fixed &model1, const Fixed &model2)
 			{
@@ -502,7 +487,6 @@ class Fixed
 				}
 			}
 
-	
 	// '!=' operator -------------------------------------------------------------------;
 			friend bool				operator!=(const Fixed &model1, const Fixed &model2)
 			{
