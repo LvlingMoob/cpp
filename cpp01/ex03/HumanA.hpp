@@ -4,20 +4,26 @@
 #include <iostream>
 #include "Weapon.hpp"
 
+
+class c
+{
+public:
+  c(int & a) : i(a) { }
+  int & i;
+};
+
 class HumanA
 {
 	public :
 
-		HumanA(std::string name, Weapon weapon);
+		HumanA(std::string name, Weapon &weapon) : _name(name), _weapon(weapon){};
 		~HumanA();
 		void	attack(void);
-		void	take_weapon(Weapon weapon);
 
 	private :
 
-		Weapon	basic;
-		std::string _name;
-		Weapon &_weapon = basic;
+		std::string 	_name;
+		Weapon			&_weapon;
 };
 
 #endif

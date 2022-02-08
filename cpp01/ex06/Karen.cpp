@@ -38,12 +38,12 @@ void Karen::complain(std::string level)
 	switch (i)
 	{
 		case (0):
-			(this->*resp[3 - i++].func)();
+			(this->*resp[i++].func)();
 		case (1):
-			(this->*resp[3 - i++].func)();
+			(this->*resp[i++].func)();
 		case (2):
-			(this->*resp[3 - i++].func)();
+			(this->*resp[i++].func)();
 		case (3):
-			(this->*resp[3 - i++].func)();
+			(this->*resp[i++].func)();
 	}
 }

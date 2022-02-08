@@ -2,26 +2,29 @@
 #include "HumanB.hpp"
 #include "Weapon.hpp"
 
+void	main_humanA(void)
+{
+	Weapon club = Weapon("crude spiked club");
+	HumanA bob("Bob", club);
+	bob.attack();
+	club.setType("some other type of club");
+	bob.attack();
+}
+
+void	main_humanB(void)
+{
+	Weapon club = Weapon("crude spiked club");
+	HumanB jim("Jim");
+	jim.setWeapon(club);
+	jim.attack();
+	club.setType("some other type of club");
+	jim.attack();
+}
+
 int	main()
 {
-	Weapon	*basic = new Weapon; 
-	Weapon	bolter("Bolter");
-	Weapon	flamme_thrower("flamme thrower");
-
-	HumanB	imperial_guard("Joe");
-
-	imperial_guard.take_weapon(basic);
-	imperial_guard.attack();
-	imperial_guard.lose_weapon();
-	imperial_guard.attack();
-
-	HumanA Titus("Titus", bolter);
-	
-	Titus.attack();
-	Titus.attack();
-	Titus.take_weapon(flamme_thrower);
-	Titus.attack();
-	Titus.attack();
-
+	main_humanA();
+	std::cout << std::endl;
+	main_humanB();
 	return (0);
 }
