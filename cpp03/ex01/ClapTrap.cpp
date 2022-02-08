@@ -9,6 +9,11 @@ ClapTrap::ClapTrap(std::string name)
 	this->_attack_damage = 0;
 }
 
+ClapTrap::ClapTrap()
+{
+	std::cout << "construct from children" << std::endl;
+}
+
 ClapTrap::~ClapTrap()
 {
 	out "One ClapTRap model gone RIP" nl;

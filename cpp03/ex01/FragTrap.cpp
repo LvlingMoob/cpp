@@ -2,7 +2,6 @@
 
 FragTrap::FragTrap(std::string name)
 {
-	ClapTrap base(name);
 	this->_name = name;
 	out "FragTrap unit on" nl;
 	this->_hit_pts = 100;

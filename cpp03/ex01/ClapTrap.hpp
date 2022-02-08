@@ -9,6 +9,7 @@ class ClapTrap
 {
 	public :
 		
+		ClapTrap();
 		ClapTrap(std::string);
 		~ClapTrap();
 		

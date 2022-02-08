@@ -1,6 +1,6 @@
 #include "ClapTrap.hpp"
 
-class FragTrap
+class FragTrap : ClapTrap
 {
 	public :
 
