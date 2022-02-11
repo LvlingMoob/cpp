@@ -6,9 +6,10 @@ HEADERSFILE	= ./
 
 SRCFILE		= ./
 
-FLAGS		= -Wall -Werror -Wextra
+FLAGS		= -Wall -Werror -Wextra -std=c++98
 
-SRCS		=	$(SRCFILE)phonebook_class.cpp\
+SRCS		=	$(SRCFILE)contact_class.cpp\
+				$(SRCFILE)phonebook_class.cpp\
 				$(SRCFILE)main.cpp\
 
 OBJS		= $(SRCS:.cpp=.o)

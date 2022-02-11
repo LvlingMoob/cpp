@@ -1,8 +1,120 @@
-#include "phonebook.hpp"
+#include "contact.hpp"
+
+/***************************** CONSTRUCT DESTRUCT *****************************/
+/******************************************************************************/
+Phonebook::Phonebook()
+{
+	this->book = new Contact[8];
+}
+
+Phonebook::~Phonebook()
+{
+	delete [] this->book;
+}
+
+
+/******************************* PRIVATE METHOD *******************************/
+/******************************************************************************/
+void	Phonebook::space_filler(std::string var)
+{
+	int	offset;
+
+	offset = 10 - var.length();
+	while (offset--)
+			out << " ";
+}
+
+void	Phonebook::print_raw(int i)
+{
+	out << "|  " << this->book[i].index << "  |";
+	space_filler(this->book[i]._firstName);
+	out << this->book[i]._firstName << "|";
+	space_filler(this->book[i]._lastName);
+	out << this->book[i]._lastName << "|";
+	space_filler(this->book[i]._nickName);
+	out << this->book[i]._nickName << "|";
+	space_filler(this->book[i]._phoneNumer);
+	out << this->book[i]._phoneNumer << "|";
+	space_filler(this->book[i]._darkSecret);
+	out << this->book[i]._darkSecret << "|";
+}
+
+void	Phonebook::slide_contacts()
+{
+	int	i = 1;
+	std::string info[5];
+	
+	while (i < 8)
+	{
+		this->book[i].reverse_contact_info(info);
+		this->book[i - 1].set_contact_infos(info);
+		i++;
+	}
+	i--;
+	this->book[i].set_contact_infos(this->page);
+}
+
+void	Phonebook::add_new_contact()
+{
+	int	i = 0;
+
+	while (i < 8 && this->book[i]._filled)
+		i++;
+	if (i > 7)
+		slide_contacts();
+	else
+	{
+		this->book[i].index = i + 1;
+		this->book[i].set_contact_infos(this->page);
+	}
+}
+
+
+/******************************** PUBLIC METHOD *******************************/
+/******************************************************************************/
+void	Phonebook::print_contact(int index)
+{
+	int	i = 0;
+	int	offset;
+
+	out nl;
+	out << "|index| FirstName|  LastName|  NickName| PhoneNber|DarkSecret|" nl;
+	out << "|-----|----------|----------|----------|----------|----------|" nl;
+	if (index <= 0)
+	{
+		if (i == 0 && book[i]._filled == false)
+			out << "|                ABSOLUTLY NO FRIEND AT ALL !                |";
+		else
+		{
+			while (i < 8 && this->book[i].index)
+			{
+				print_raw(i);
+				if (i < 7 && this->book[i + 1].index > 0)
+					out nl << "|-----|----------|----------|----------|----------|----------|" nl;
+				i++;
+			}
+		}
+		out nl << "|-----|----------|----------|----------|----------|----------|" nl;
+	}
+	else
+	{
+		if (i == 0 && book[i]._filled == false)
+			out << "|                ABSOLUTLY NO FRIEND AT ALL !                |";
+		else
+		{	
+			while (i < 8 && i < index && this->book[i].index)
+				i++;
+			if (i != index)
+				out << "|                       INVALID INDEX !                      |";
+			else
+				print_raw(i - 1);
+		}
+		out nl << "|-----|----------|----------|----------|----------|----------|" nl;
+	}
+}
 
 void	Phonebook::get_user_info()
 {
-	static int			row = 0;
 	static std::string	messages[5] = {
 		"Enter first name",
 		"Enter last name",
@@ -14,36 +126,14 @@ void	Phonebook::get_user_info()
 
 	for (int column = 0; column < 5; column++)
 	{
-		std::cout << messages[column] NL;
+		out << messages[column] nl;
 		std::cin >> user_input;
 		if (user_input.length() > 10)
 		{
 			user_input[9] = '.';
 			user_input.resize(10);
 		}
-		this->book[row % 8][column] = user_input;
+		this->page[column] = user_input;
 	}
-	row++;
-}
-
-void	Phonebook::find_users()
-{
-	int	offset;
-
-	std::cout NL;
-	std::cout << "| FirstName|  LastName|  NickName| PhoneNber|DarkSecret|" NL;
-	std::cout << "|----------|----------|----------|----------|----------|" NL;
-
-	for (int i = 0; i < 8; i++)
-	{
-	 	std::cout << '|';
-		for (int j = 0; j < 5; j++)
-		{
-			offset = 10 - this->book[i][j].length();
-			while (offset--)
-				std::cout << " ";
-			std::cout << this->book[i][j] << '|';
-		}
-		std::cout NL << "|----------|----------|----------|----------|----------|" NL;
-	}
+	add_new_contact();
 }

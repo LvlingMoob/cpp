@@ -4,7 +4,7 @@ CC			= clang++
 
 SRCFILE		= ./
 
-FLAGS		= -c -Wall -Werror -Wextra
+FLAGS		= -c -Wall -Werror -Wextra -std=c++98
 
 SRCS		=	$(SRCFILE)megaphone.cpp\
 

@@ -1,13 +1,11 @@
 #ifndef PHONEBOOK_HPP
-#define PHONEBOOK_HPP
+# define PHONEBOOK_HPP
 
 # include <iostream>
 # include "contact.hpp"
 
-# define nl << std::endl
+# define NL << std::endl
 # define out std::cout
-
-class Contact;
 
 class Phonebook
 {
@@ -16,18 +14,17 @@ class Phonebook
 		Phonebook();
 		~Phonebook();
 
+		void	find_users(int index = -1);
 		void	get_user_info();
-		void	print_contact(int = -1);
+		void	print_contact();
 
 	private :
 
 		std::string	page[5];
-	 	Contact	*book;
+		Contact	*book = new Contact[8];
 
-	 	void	add_new_contact();
-	 	void	slide_contacts();
-	 	void	print_raw(int);
-	 	void	space_filler(std::string var);
+		void	add_new_contact();
+		void	slide_contacts();
 };
 
 #endif

@@ -1,4 +1,4 @@
-NAME		= replace
+NAME		= phonebook
 
 CC			= clang++
 
@@ -8,7 +8,8 @@ SRCFILE		= ./
 
 FLAGS		= -Wall -Werror -Wextra -std=c++98
 
-SRCS		=	$(SRCFILE)main.cpp\
+SRCS		=	$(SRCFILE)phonebook_class.cpp\
+				$(SRCFILE)main.cpp\
 
 OBJS		= $(SRCS:.cpp=.o)
 
