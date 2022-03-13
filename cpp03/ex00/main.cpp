@@ -2,12 +2,12 @@
 
 int	main()
 {
-	ClapTrap clptrp("SapTrap");
+	ClapTrap clptrp("SadTrap");
 
 	clptrp.attack("enemies of the nation");
 	clptrp.attack("enemies of the party");
 	clptrp.takeDamage(6);
-	clptrp.attack("anyone who doesn't accept the comrade");
+	clptrp.attack("anyone who doesn't accept the comrade way of life");
 	clptrp.takeDamage(1);
 	clptrp.takeDamage(2);
 	clptrp.beRepaired(5);

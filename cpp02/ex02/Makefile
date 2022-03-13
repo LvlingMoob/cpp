@@ -1,6 +1,6 @@
 NAME		= canon
 
-CC		= clang++
+CC		= c++
 
 HEADERSFILE	= ./
 

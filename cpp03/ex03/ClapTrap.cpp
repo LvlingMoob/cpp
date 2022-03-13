@@ -3,14 +3,21 @@
 ClapTrap::ClapTrap(std::string name)
 {
 	this->_name = name;
-	out "ClapTRap " << this->_name << " is in da place !" nl;
+	out "model ClapTRap " << this->_name << " is in da place !" nl;
+	this->_hit_pts = 10;
+	this->_hit_pts_modified = this->_hit_pts;
+	this->_energy = 10;
+	this->_attack_damage = 0;
+}
+
+ClapTrap::ClapTrap()
+{
+	;
 }
 
 ClapTrap::~ClapTrap()
 {
-	out "ClapTRap " << this->_name
-	<< " is dead, but do not despair. It's gone for a better world" 
-	<< " it's now isekaied, merely the cycle of life... Hakuna matata !!!" nl;
+	out "One ClapTRap model gone RIP" nl;
 }
 
 void	ClapTrap::already_dead()
@@ -28,7 +35,7 @@ void 	ClapTrap::attack(const std::string& target)
 	if (!this->_energy)
 	{
 		out "ClapTRap " << this->_name
-		<< " doesn't have any power anymore, thus, can't do anything anymore now, let it rest in peace" nl;
+		<< " doesn't have any power anymore, thus, can't do now, let him rest in peace" nl;
 		return ;
 	}
 	this->_energy--;
@@ -44,9 +51,9 @@ void 	ClapTrap::takeDamage(unsigned int amount)
 		return ;
 	}
 	out "ClapTRap " << this->_name
-	<< " receive " << amount << " of damage" nl;
-	this->_hit_pts -= amount;
-	if (this->_hit_pts <= 0)
+	<< " and receive " << amount << " of damage" nl;
+	this->_hit_pts_modified -= amount;
+	if (this->_hit_pts_modified <= 0)
 		this->_alive = 0;
 }
 
@@ -62,14 +69,14 @@ void 	ClapTrap::beRepaired(unsigned int amount)
 		out "ClapTRap " << this->_name << " doesn't have any power anymore, thus, can't do anything anymore" nl;
 		return ;
 	}
-	if (this->_hit_pts == 10)
+	if (this->_hit_pts_modified == this->_hit_pts)
 	{
 		out "ClapTRap " << this->_name << " already full life nothing's done" nl;
 		return ;
 	}
 	this->_energy--;
-	if (this->_hit_pts + amount > 10)
-		amount = 10 - this->_hit_pts;
+	if (this->_hit_pts_modified != this->_hit_pts && this->_hit_pts_modified + amount > this->_hit_pts)
+		amount = this->_hit_pts - this->_hit_pts_modified;
 	out "ClapTRap " << this->_name << " proceed to repair itself and gain " << amount << " health back" nl;
-	this->_hit_pts += amount;
+	this->_hit_pts_modified += amount;
 }

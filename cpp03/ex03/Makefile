@@ -1,4 +1,4 @@
-NAME		= scavTrap
+NAME		= diamongTrap
 
 CC			= clang++
 
@@ -10,7 +10,8 @@ FLAGS		= -Wall -Werror -Wextra -std=c++98
 
 SRCS		=	$(SRCFILE)main.cpp\
 				$(SRCFILE)ClapTrap.cpp\
-				$(SRCFILE)ScavTrap.cpp\
+				$(SRCFILE)FragTrap.cpp\
+				$(SRCFILE)DiamondTrap.cpp\
 
 OBJS		= $(SRCS:.cpp=.o)
 

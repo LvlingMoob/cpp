@@ -23,6 +23,7 @@ class Fixed
 		void	floatToFixed(const float float_nbr);	
 		int		getRawBits(void) const;
 		void	setRawBits(int const raw);
+		int		getScale(void) const;
 
 	/*destruct*/
 		~Fixed();
@@ -30,9 +31,6 @@ class Fixed
 
 
 	/*overloads*/
-	// cout << ------------------------------------------------------------------------;
-		friend std::ostream	&operator<<(std::ostream &c_out, Fixed const &model);
-
 	/*pre post increment*/
 	// post ---------------------------------------------------------------------------;
 		void						operator++(int);
@@ -41,489 +39,147 @@ class Fixed
 		void						operator++();
 		void						operator--();
 
+		Fixed			&operator=(const Fixed &model);
+		Fixed			operator+(Fixed const &model);
+		Fixed			operator-(const Fixed &model);
+		Fixed			operator*(const Fixed &model);
+		Fixed			operator/(const Fixed &model);
+		Fixed			&operator+=(const Fixed &model);
+		Fixed			&operator-=(const Fixed &model);
+		bool			operator<(const Fixed &model) const;
+		bool			operator>(const Fixed &model) const;
+		bool			operator>=(const Fixed &model) const;
+		bool			operator<=(const Fixed &model) const;
+		bool			operator==(const Fixed &model) const;
+		bool			operator!=(const Fixed &model) const;
+
 	/*with templates*/
-		/* **************************** ASSIGNATION OPERATION **************************** */
 	// '=' operator --------------------------------------------------------------------;
-		Fixed			&operator=(const Fixed &model)
-		{
-			this->_nbr = model._nbr;
-			return (*this);
-		}
 		template<typename T>
 		Fixed			&operator=(const T &value)
 		{
 			int	tmp;
 
-			if (typeid(value) ==  typeid(int))
-			{
-				tmp = (int)value << this->scale;
-				this->_nbr = tmp;
-				return (*this);
-			}
-			else
-			{
-				tmp = ((double)value * (double)(1 << this->scale));
-				this->_nbr = tmp;
-				return (*this);
-			}
+			tmp = ((double)value * (double)(1 << this->scale));
+			this->_nbr = tmp;
+			return (*this);
 		}
 
 	// '+' operator --------------------------------------------------------------------;
-			friend Fixed			operator+(Fixed &model1, const Fixed &model2)
-			{
-				model1._nbr = model1._nbr + model2._nbr;
-				return (model1);
-			}
-			template<typename T>
-			friend Fixed			operator+(Fixed &model, const T &value)
-			{
-				int	tmp;
-
-				if (typeid(value) ==  typeid(int))
-				{
-					tmp = (int)value << model.scale;
-					model._nbr += tmp;
-					return (model._nbr);
-				}
-				else
-				{
-					tmp = ((double)value * (double)(1 << model.scale));
-					model._nbr += tmp;
-					return (model);
-				}
-			}
-			template<typename T>
-			friend T				operator+(T &value, const Fixed &model)
-			{
-				int	tmp;
-
-				if (typeid(value) ==  typeid(int))
-				{
-					tmp = (int)value << model.scale;
-					tmp += model._nbr;
-					return (value = tmp >> model.scale);
-				}
-				else
-				{
-					tmp = ((double)value * (double)(1 << model.scale));
-					tmp += model._nbr;
-					return (value = (double)tmp / (double)(1 << model.scale));
-				}
-			}
+		template <typename T>
+		Fixed			operator+(T const &value)
+		{
+			Fixed	tmp(this->toFloat() + value);
+			return (tmp);
+		}
 
 	// '-' operator --------------------------------------------------------------------;
-			friend Fixed			operator-(Fixed &model1, const Fixed &model2)
-			{
-				model1._nbr -= model2._nbr;
-				return (model1);
-			}
-			template<typename T>
-			friend Fixed			operator-(Fixed &model, const T &value)
-			{
-				int	tmp;
-
-				if (typeid(value) ==  typeid(int))
-				{
-					tmp = (int)value << model.scale;
-					model._nbr -= tmp;
-					return (model);
-				}
-				else
-				{
-					tmp = ((double)value * (double)(1 << model.scale));
-					model._nbr -= tmp;
-					return (model);
-				}
-			}
-			template<typename T>
-			friend T				operator-(T &value, const Fixed &model)
-			{
-				int	tmp;
-
-				if (typeid(value) ==  typeid(int))
-				{
-					tmp = (int)value << model.scale;
-					tmp -= model._nbr;
-					return (value = tmp >> model.scale);
-				}
-				else
-				{
-					tmp = ((double)value * (double)(1 << model.scale));
-					tmp -= model._nbr;
-					return (value = (double)tmp / (double)(1 << model.scale));
-				}
-			}
+		template <typename T>
+		Fixed			operator-(T const &value)
+		{
+			Fixed	tmp(this->toFloat() - value);
+			return (tmp);
+		}
 
 	// '*' operator --------------------------------------------------------------------;
-			friend Fixed			operator*(Fixed &model1, const Fixed &model2)
-			{
-				model1.setRawBits(((long long)model1._nbr * (long long)model2._nbr) >> model1.scale);
-				return (model1);
-			}
-			template<typename T>
-			friend Fixed			operator*(Fixed &model, const T &value)
-			{
-				double	tmp;
-
-				if (typeid(value) ==  typeid(int))
-				{
-					tmp = value << model.scale;
-					model.setRawBits(((long long)tmp * (long long)model._nbr) >> model.scale);
-					return (model);
-				}
-				else
-				{
-					tmp = (double)value * (double)(1 << model.scale);
-					model.setRawBits(((long long)tmp * (long long)model._nbr) >> model.scale);
-					return (model);
-				}
-			}
-			template<typename T>
-			friend T				operator*(T &value, const Fixed &model)
-			{
-				value = value * model.toFloat();
-				return (value);
-			}
+		template <typename T>
+		Fixed			operator*(T const &value)
+		{
+			Fixed	tmp(this->toFloat() * value);
+			return (tmp);
+		}
 
 	// '/' operator --------------------------------------------------------------------;
-			friend Fixed			operator/(Fixed &model1, const Fixed &model2)
-			{
-				int	tmp;
-
-				tmp = model1.toFloat() / model2.toFloat();
-				model1.setRawBits((double)tmp * (double)(1 << model1.scale));
-				return (model1);
-			}
-			template<typename T>
-			friend Fixed			operator/(Fixed &model, const T &value)
-			{
-				double	tmp;
-
-				tmp = model.toFloat() / value;
-				model.setRawBits(tmp * (double)(1 << model.scale));
-				return (model);
-			}
-			template<typename T>
-			friend T				operator/(T &value, const Fixed &model)
-			{
-				return (value = value / model.toFloat());
-			}
+		template <typename T>
+		Fixed			operator/(T const &value)
+		{
+			Fixed	tmp(this->toFloat() / value);
+			return (tmp);
+		}
 
 	// '+=' operator -------------------------------------------------------------------;
-			friend Fixed			&operator+=(Fixed &model1, const Fixed &model2)
-			{
-				model1.setRawBits(model1._nbr + model2._nbr);
-				return (model1);
-			}
-			template<typename T>
-			friend Fixed			&operator+=(Fixed &model, const T &value)
-			{
-				int	tmp;
+		template<typename T>
+		Fixed			&operator+=(const T &value)
+		{
+			int	tmp;
 
-				if (typeid(value) ==  typeid(int))
-				{
-					tmp =(int)value << model.scale;
-					model._nbr = model._nbr + tmp;
-					return (model);
-				}
-				else
-				{
-					tmp = ((double)value * (double)(1 << model.scale));
-					model._nbr = model._nbr + tmp;
-					return (model);
-				}
-			}
-			template<typename T>
-			friend T				&operator+=(T &value, const Fixed &model)
-			{
-				int	tmp;
-
-				if (typeid(value) ==  typeid(int))
-				{
-					tmp = (int)value << model.scale;
-					tmp = tmp + model._nbr;
-					return (value = tmp >> model.scale);
-				}
-				else
-				{
-					tmp = ((double)value * (double)(1 << model.scale));
-					tmp = tmp + model._nbr;
-					return (value = (double)tmp / (double)(1 << model.scale));
-				}
-			}
+			tmp = ((double)value * (double)(1 << this->scale));
+			this->_nbr = this->_nbr + tmp;
+			return (*this);
+		}
 
 	// '-=' operator -------------------------------------------------------------------;
-			friend Fixed			&operator-=(Fixed &model1, const Fixed &model2)
-			{
-				model1.setRawBits(model1._nbr - model2._nbr);
-				return (model1);
-			}
-			template<typename T>
-			friend Fixed			&operator-=(Fixed &model, const T &value)
-			{
-				int	tmp;
+		template<typename T>
+		Fixed			&operator-=(const T &value)
+		{
+			int	tmp;
 
-				if (typeid(value) ==  typeid(int))
-				{
-					tmp =(int)value << model.scale;
-					model._nbr = model._nbr - tmp;
-					return (model);
-				}
-				else
-				{
-					tmp = ((double)value * (double)(1 << model.scale));
-					model._nbr = model._nbr - tmp;
-					return (model);
-				}
-			}
-			template<typename T>
-			friend T				&operator-=(T &value, const Fixed &model)
-			{
-				int	tmp;
+			tmp = ((double)value * (double)(1 << this->scale));
+			this->_nbr = this->_nbr - tmp;
+			return (*this);
+		}
 
-				if (typeid(value) ==  typeid(int))
-				{
-					tmp = (int)value << model.scale;
-					tmp = tmp - model._nbr;
-					return (value = tmp >> model.scale);
-				}
-				else
-				{
-					tmp = ((double)value * (double)(1 << model.scale));
-					tmp = tmp - model._nbr;
-					return (value = (double)tmp / (double)(1 << model.scale));
-				}
-			}
+	// '<' operator --------------------------------------------------------------------;
+		template<typename T>
+		bool				operator<(const T &value) const
+		{
+			int	tmp;
 
-
-			/* ************************** COMPARISON  CONDITION ************************** */
-	// '<' operator --------------------------------------------------------------------;			
-			friend bool				operator<(const Fixed &model1, const Fixed &model2)
-			{
-				return (model1._nbr < model2._nbr);
-			}
-			template<typename T>
-			friend bool				operator<(const Fixed &model, const T &value)
-			{
-				int	tmp;
-
-				if (typeid(value) ==  typeid(int))
-				{
-					tmp =(int)value << model.scale;
-					return (model._nbr < tmp);
-				}
-				else
-				{
-					tmp = ((double)value * (double)(1 << model.scale));
-					return (model._nbr < tmp);
-				}
-			}
-			template<typename T>
-			friend bool				operator<(const T &value, const Fixed &model)
-			{
-				int	tmp;
-
-				if (typeid(value) ==  typeid(int))
-				{
-					tmp = (int)value << model.scale;
-					return (tmp < model._nbr);
-				}
-				else
-				{
-					tmp = ((double)value * (double)(1 << model.scale));
-					return (tmp < model._nbr);
-				}
-			}
+			tmp = (double)value * ((double)(1 << this->scale));
+			return (this->_nbr < tmp);
+		}
 
 	// '>' operator --------------------------------------------------------------------;
-			friend bool				operator>(const Fixed &model1, const Fixed &model2)
-			{
-				return (model1._nbr > model2._nbr);
-			}
-			template<typename T>
-			friend bool				operator>(const Fixed &model, const T &value)
-			{
-				int	tmp;
+		template<typename T>
+		bool				operator>(const T &value) const
+		{
+			int	tmp;
 
-				if (typeid(value) ==  typeid(int))
-				{
-					tmp = (int)value << model.scale;
-					return (model._nbr > tmp);
-				}
-				else
-				{
-					tmp = ((double)value * (double)(1 << model.scale));
-					return (model._nbr > tmp);
-				}
-			}
-			template<typename T>
-			friend bool				operator>(const T &value, const Fixed &model)
-			{
-				int	tmp;
-
-				if (typeid(value) ==  typeid(int))
-				{
-					tmp = (int)value << model.scale;
-					return (tmp > model._nbr);
-				}
-				else
-				{
-					tmp = ((double)value * (double)(1 << model.scale));
-					return (tmp > model._nbr);
-				}
-			}
+			tmp = (double)value * ((double)(1 << this->scale));
+			return (this->_nbr > tmp);
+		}
 
 	// '<=' operator -------------------------------------------------------------------;
-			friend bool				operator<=(const Fixed &model1, const Fixed &model2)
-			{
-				return (model1._nbr <= model2._nbr);
-			}
-			template<typename T>
-			friend bool				operator<=(const Fixed &model, const T &value)
-			{
-				int	tmp;
+		template<typename T>
+		bool				operator>=(const T &value) const
+		{
+			int	tmp;
 
-				if (typeid(value) ==  typeid(int))
-				{
-					tmp = tmp = (int)value << model.scale;
-					return (model._nbr <= tmp);
-				}
-				else
-				{
-					tmp = ((double)value * (double)(1 << model.scale));
-					return (model._nbr <= tmp);
-				}
-			}
-			template<typename T>
-			friend bool				operator<=(const T &value, const Fixed &model)
-			{
-				int	tmp;
-
-				if (typeid(value) ==  typeid(int))
-				{
-					tmp = tmp = (int)value << model.scale;
-					return (tmp <= model._nbr);
-				}
-				else
-				{
-					tmp = ((double)value * (double)(1 << model.scale));
-					return (tmp <= model._nbr);
-				}
-			}
+			tmp = (double)value * ((double)(1 << this->scale));
+			return (this->_nbr >= tmp);
+		}
 
 	// '>=' operator -------------------------------------------------------------------;
-			friend bool				operator>=(const Fixed &model1, const Fixed &model2)
-			{
-				return (model1._nbr >= model2._nbr);
-			}
-			template<typename T>
-			friend bool				operator>=(const Fixed &model, const T &value)
-			{
-				int	tmp;
+		template<typename T>
+		bool				operator<=(const T &value) const
+		{
+			int	tmp;
 
-				if (typeid(value) ==  typeid(int))
-				{
-					tmp = tmp = (int)value << model.scale;
-					return (model._nbr >= tmp);
-				}
-				else
-				{
-					tmp = ((double)value * (double)(1 << model.scale));
-					return (model._nbr >= tmp);
-				}
-			}
-			template<typename T>
-			friend bool				operator>=(const T &value, const Fixed &model)
-			{
-				int	tmp;
-
-				if (typeid(value) ==  typeid(int))
-				{
-					tmp = (int)value << model.scale;
-					return (tmp >= model._nbr);
-				}
-				else
-				{
-					tmp = ((double)value * (double)(1 << model.scale));
-					return (tmp >= model._nbr);
-				}
-			}
+			tmp = (double)value * ((double)(1 << this->scale));
+			return (this->_nbr <= tmp);
+		}
 
 	// '==' operator -------------------------------------------------------------------;
-			friend bool				operator==(const Fixed &model1, const Fixed &model2)
-			{
-				return (model1._nbr == model2._nbr);
-			}
-			template<typename T>
-			friend bool				operator==(const Fixed &model, const T &value)
-			{
-				int	tmp;
+		template<typename T>
+		bool				operator==(const T &value) const
+		{
+			int	tmp;
 
-				if (typeid(value) ==  typeid(int))
-				{
-					tmp = (int)value << model.scale;
-					return (model._nbr == tmp);
-				}
-				else
-				{
-					tmp = ((double)value * (double)(1 << model.scale));
-					return (model._nbr == tmp);
-				}
-			}
-			template<typename T>
-			friend bool				operator==(const T &value, const Fixed &model)
-			{
-				int	tmp;
-
-				if (typeid(value) ==  typeid(int))
-				{
-					tmp = (int)value << model.scale;
-					return (tmp == model._nbr);
-				}
-				else
-				{
-					tmp = ((double)value * (double)(1 << model.scale));
-					return (tmp == model._nbr);
-				}
-			}
+			tmp = (double)value * ((double)(1 << this->scale));
+			return (this->_nbr == tmp);
+		}
 
 	// '!=' operator -------------------------------------------------------------------;
-			friend bool				operator!=(const Fixed &model1, const Fixed &model2)
-			{
-				return (model1._nbr != model2._nbr);
-			}
-			template<typename T>
-			friend bool				operator!=(const Fixed &model, const T &value)
-			{
-				int	tmp;
+		template<typename T>
+		bool				operator!=(const T &value) const
+		{
+			int	tmp;
 
-				if (typeid(value) ==  typeid(int))
-				{
-					tmp = (int)value << model.scale;
-					return (model._nbr != tmp);
-				}
-				else
-				{
-					tmp = ((double)value * (double)(1 << model.scale));
-					return (model._nbr != tmp);
-				}
-			}
-			template<typename T>
-			friend bool				operator!=(const T &value, const Fixed &model)
-			{
-				int	tmp;
-
-				if (typeid(value) ==  typeid(int))
-				{
-					tmp = (int)value << model.scale;
-					return (tmp != model._nbr);
-				}
-				else
-				{
-					tmp = ((double)value * (double)(1 << model.scale));
-					return (tmp != model._nbr);
-				}
-			}
+			tmp = (double)value * ((double)(1 << this->scale));
+			return (this->_nbr != tmp);
+		}
 };
+
+std::ostream	&operator<<(std::ostream &c_out, Fixed const &model);
 
 #endif

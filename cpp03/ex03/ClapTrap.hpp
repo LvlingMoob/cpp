@@ -2,6 +2,9 @@
 # define CLAP_TRAP_HPP
 
 # include <iostream>
+# include "ClapTrap.hpp"
+# include "FragTrap.hpp"
+# include "DiamondTrap.hpp"
 # define nl << std::endl
 # define out std::cout <<
 
@@ -10,6 +13,7 @@ class ClapTrap
 	public :
 		
 		ClapTrap(std::string);
+		ClapTrap();
 		~ClapTrap();
 		
 		void	attack(const std::string& target);
@@ -17,7 +21,6 @@ class ClapTrap
 		void	beRepaired(unsigned int amount);
 
 	protected :
-		std::string	_name;
 		int			_hit_pts;
 		int			_hit_pts_modified;
 		int			_energy;
@@ -25,6 +28,9 @@ class ClapTrap
 		int			_alive = 1;
 
 		void	already_dead(void);
+
+	private :
+		std::string _name;
 };
 
 #endif

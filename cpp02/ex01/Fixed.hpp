@@ -18,12 +18,12 @@ class Fixed
 		int		toInt(void) const;
 		void	intToFixed(const int int_nbr);
 		void	floatToFixed(const float float_nbr);	
-		int		getRawBits(void) const;
 		void	setRawBits(int const raw);
+		int		getRawBits(void) const;
+		int		getScale(void) const;
 
 	/*overloads*/
-		Fixed				&operator=(Fixed const &);
-		friend std::ostream	&operator<<(std::ostream &c_out, Fixed const &model);
+		Fixed			&operator=(Fixed const &);
 
 		~Fixed();
 
@@ -32,5 +32,7 @@ class Fixed
 		static const int	scale = 8;
 		int					_nbr;
 };
+
+std::ostream	&operator<<(std::ostream &c_out, Fixed const &model);
 
 #endif
