@@ -2,9 +2,7 @@
 # define CLAP_TRAP_HPP
 
 # include <iostream>
-# include "ClapTrap.hpp"
-# include "FragTrap.hpp"
-# include "DiamondTrap.hpp"
+
 # define nl << std::endl
 # define out std::cout <<
 
@@ -13,7 +11,7 @@ class ClapTrap
 	public :
 		
 		ClapTrap(std::string);
-		ClapTrap();
+		// ClapTrap();
 		~ClapTrap();
 		
 		void	attack(const std::string& target);

@@ -2,15 +2,13 @@
 # define SCAV_TRAP_HPP
 
 # include "ClapTrap.hpp"
-# include "FragTrap.hpp"
-# include "DiamondTrap.hpp"
 
 class ScavTrap : virtual public ClapTrap
 {
 	public :
 
 		ScavTrap(std::string);
-		ScavTrap();
+		// ScavTrap();
 		~ScavTrap();
 
 		void	attack(const std::string& target);

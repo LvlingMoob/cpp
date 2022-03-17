@@ -10,10 +10,10 @@ ClapTrap::ClapTrap(std::string name)
 	this->_attack_damage = 0;
 }
 
-ClapTrap::ClapTrap()
-{
-	;
-}
+// ClapTrap::ClapTrap()
+// {
+// 	;
+// }
 
 ClapTrap::~ClapTrap()
 {

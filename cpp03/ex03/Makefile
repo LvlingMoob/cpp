@@ -6,11 +6,12 @@ HEADERSFILE	= ./
 
 SRCFILE		= ./
 
-FLAGS		= -Wall -Werror -Wextra -std=c++98
+FLAGS		= -Wall -Werror -Wextra -Wshadow -Wno-shadow -std=c++98
 
 SRCS		=	$(SRCFILE)main.cpp\
 				$(SRCFILE)ClapTrap.cpp\
 				$(SRCFILE)FragTrap.cpp\
+				$(SRCFILE)ScavTrap.cpp\
 				$(SRCFILE)DiamondTrap.cpp\
 
 OBJS		= $(SRCS:.cpp=.o)

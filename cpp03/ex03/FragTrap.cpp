@@ -10,10 +10,10 @@ FragTrap::FragTrap(std::string name): ClapTrap(name)
 	this->_attack_damage = 21;
 }
 
-FragTrap::FragTrap()
-{
-	;
-}
+// FragTrap::FragTrap()
+// {
+// 	;
+// }
 
 FragTrap::~FragTrap()
 {

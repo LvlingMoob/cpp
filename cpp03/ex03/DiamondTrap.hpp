@@ -1,9 +1,8 @@
 #ifndef DIAMOND_TRAP_HPP
 # define DIAMOND_TRAP_HPP
 
-# include "ClapTrap.hpp"
-# include "ScavTrap.hpp"
 # include "FragTrap.hpp"
+# include "ScavTrap.hpp"
 
 class DiamondTrap : public ScavTrap, public FragTrap
 {
@@ -12,6 +11,7 @@ class DiamondTrap : public ScavTrap, public FragTrap
 		~DiamondTrap();
 
 		void	attack(const std::string &target);
+		void	whoAmI();
 
 	private :
 		std::string	_name;

@@ -10,10 +10,10 @@ ScavTrap::ScavTrap(std::string name): ClapTrap(name)
 	this->_attack_damage = 20;
 }
 
-ScavTrap::ScavTrap()
-{
-	;
-}
+// ScavTrap::ScavTrap()
+// {
+// 	;
+// }
 
 ScavTrap::~ScavTrap()
 {

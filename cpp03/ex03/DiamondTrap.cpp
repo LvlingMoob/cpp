@@ -1,6 +1,6 @@
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap(std::string name)
+DiamondTrap::DiamondTrap(std::string name): ScavTrap(name), FragTrap(name), ClapTrap(name)
 {
 	this->_name = name;
 	out "DiamondTrap unit on" nl;
@@ -13,4 +13,27 @@ DiamondTrap::DiamondTrap(std::string name)
 DiamondTrap::~DiamondTrap()
 {
 	out "DiamondTrap off " nl;
+}
+
+void	DiamondTrap::whoAmI()
+{
+	out this->_name nl;
+}
+
+void 	DiamondTrap::attack(const std::string &target)
+{
+	if (!this->_alive)
+	{
+		already_dead();
+		return ;
+	}
+	if (!this->_energy)
+	{
+		out "ClapTRap : DiamondTrap unit " << this->_name
+		<< " doesn't have any power anymore, thus, can't do now, let him rest in peace" nl;
+		return ;
+	}
+	this->_energy--;
+	out "ClapTRap DiamondTrap unit " << this->_name << " attack " << target
+	<< " and inflict " << this->_attack_damage << " damage" nl;
 }
