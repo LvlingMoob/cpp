@@ -3,12 +3,14 @@
 /******************* CAT *******************/
 Cat::Cat()
 {
-	this->type = "cat";
+	this->type = "Cat";
+	this->cerv = new Brain;
 }
 
 Cat::~Cat()
 {
-	;
+	std::cout << "laaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" << std::endl;
+	delete this->cerv;
 }
 
 
@@ -22,11 +24,13 @@ void	Cat::makeSound() const
 Dog::Dog()
 {
 	this->type = "dog";
+	this->cerv = new Brain;
 }
 
 Dog::~Dog()
 {
-	;
+	std::cout << "iciiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii" << std::endl;
+	delete this->cerv;
 }
 
 

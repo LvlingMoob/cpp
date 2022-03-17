@@ -10,6 +10,9 @@ class Cat : public Animal
 		~Cat();
 
 		void	makeSound() const;
+
+	private :
+		Brain *cerv;
 };
 
 class Dog : public Animal
@@ -19,6 +22,9 @@ class Dog : public Animal
 		~Dog();
 
 		void	makeSound() const;
+
+	private :
+		Brain *cerv;
 };
 
 #endif

@@ -26,14 +26,15 @@ int	main()
 	std::cout << i->getType() << " " << std::endl;
 	i->makeSound();
 	j->makeSound();
+	
 	meta->makeSound();
 
 	delete i;
 	delete j;
 	delete meta;
 
-	std::cout << std::endl;
-	wrongMain();
+	// std::cout << std::endl;
+	// wrongMain();
 
 	return (0);
 }

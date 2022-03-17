@@ -3,13 +3,14 @@
 
 # include <iostream>
 # include <string>
+# include "brain.hpp"
 
 class	Animal
 {
 	public :
 		Animal();
 		~Animal();
-
+		
 		virtual void	makeSound() const;
 		std::string		getType() const;
 
