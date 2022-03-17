@@ -1,6 +1,6 @@
 NAME		= fragTrap
 
-CC			= clang++
+CC			= c++
 
 HEADERSFILE	= ./
 

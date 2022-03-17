@@ -1,6 +1,6 @@
 NAME		= scavTrap
 
-CC			= clang++
+CC			= c++
 
 HEADERSFILE	= ./
 

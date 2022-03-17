@@ -1,6 +1,6 @@
 NAME		= diamongTrap
 
-CC			= clang++
+CC			= c++
 
 HEADERSFILE	= ./
 

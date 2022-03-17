@@ -1,4 +1,4 @@
-NAME		= clapTrap
+NAME		= pet
 
 CC			= c++
 
@@ -9,7 +9,9 @@ SRCFILE		= ./
 FLAGS		= -Wall -Werror -Wextra -std=c++98
 
 SRCS		=	$(SRCFILE)main.cpp\
-			$(SRCFILE)ClapTrap.cpp\
+				$(SRCFILE)animal.cpp\
+				$(SRCFILE)goodPet.cpp\
+				$(SRCFILE)wrongPet.cpp\
 
 OBJS		= $(SRCS:.cpp=.o)
 
