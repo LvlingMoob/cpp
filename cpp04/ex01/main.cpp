@@ -33,8 +33,8 @@ int	main()
 	delete j;
 	delete meta;
 
-	// std::cout << std::endl;
-	// wrongMain();
+	std::cout << std::endl;
+	wrongMain();
 
 	return (0);
 }
