@@ -1,4 +1,4 @@
-NAME		= pet
+NAME		= materia
 
 CC			= c++
 
@@ -10,7 +10,6 @@ FLAGS		= -Wall -Werror -Wextra -std=c++98
 
 SRCS		=	$(SRCFILE)main.cpp\
 				$(SRCFILE)character.cpp\
-				$(SRCFILE)elements.cpp\
 				$(SRCFILE)materia.cpp\
 
 OBJS		= $(SRCS:.cpp=.o)

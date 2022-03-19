@@ -1,9 +1,5 @@
-#include <iostream>
-#include <string>
-
-#include "elements.hpp"
-#include "character.hpp"
 #include "materia.hpp"
+#include "character.hpp"
 
 int	main()
 {
