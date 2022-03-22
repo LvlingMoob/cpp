@@ -19,12 +19,12 @@ class ICharacter
 };
 
 
-class Artilleur : public ICharacter
+class Character : public ICharacter
 {
 	public :
 		//construct
-		Artilleur(std::string name) : _name(name) {};
-		~Artilleur();
+		Character(std::string name) : _name(name) {};
+		~Character();
 
 		//methods
 		virtual std::string const	&getName() const;

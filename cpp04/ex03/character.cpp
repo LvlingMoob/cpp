@@ -1,21 +1,21 @@
 #include "character.hpp"
 
-std::string const	&Artilleur::getName() const
+std::string const	&Character::getName() const
 {
 	return (this->_name);
 }
 
-void	Artilleur::equip(AMateria *m)
+void	Character::equip(AMateria *m)
 {
 	;
 }
 
-void	Artilleur::unequip(int idx)
+void	Character::unequip(int idx)
 {
 	;
 }
 
-void	Artilleur::use(int idx, ICharacter& target)
+void	Character::use(int idx, ICharacter& target)
 {
 	_materia[idx]->use(target);
 }
