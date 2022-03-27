@@ -4,10 +4,14 @@
 # include <iostream>
 # include <string>
 
+#define out std::cout <<
+#define nl << std::endl
+
 class	Animal
 {
 	public :
 		Animal();
+		Animal(Animal const &);
 		~Animal();
 
 		virtual void	makeSound() const;

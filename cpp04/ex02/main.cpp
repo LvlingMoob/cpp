@@ -3,6 +3,8 @@
 
 int	main()
 {
+	AAnimal *a = new Dog();
+
 	const AAnimal* j = new Dog();
 	const AAnimal* i = new Cat();
 
@@ -11,6 +13,14 @@ int	main()
 	i->makeSound();
 	j->makeSound();
 	
+	Dog *dogo = new Dog;
+	Dog pochi(*dogo);
+
+	delete dogo;
+
+	pochi.letsSee();
+
+	delete a;
 	delete i;
 	delete j;
 

@@ -3,11 +3,12 @@
 wrongCat::wrongCat()
 {
 	this->type = "wrongcat";
+	out "wrongCat constructor" nl;
 }
 
 wrongCat::~wrongCat()
 {
-	;
+	out "wrongCat destructor" nl;
 }
 
 

@@ -4,10 +4,14 @@
 # include <iostream>
 # include <string>
 
+#define out std::cout <<
+#define nl << std::endl
+
 class Brain
 {
 	public :
 		Brain();
+		Brain(Brain const &);
 		~Brain();
 
 		std::string ideas[100];

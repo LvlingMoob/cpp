@@ -18,6 +18,14 @@ void	wrongMain()
 
 int	main()
 {
+	Animal *a = new Dog();
+	Animal b(*a);
+	Animal c = *a;
+
+	out a->getType() nl;
+	out b.getType() nl;
+	out c.getType() nl;
+
 	const Animal* meta = new Animal();
 	const Animal* j = new Dog();
 	const Animal* i = new Cat();
@@ -27,8 +35,16 @@ int	main()
 	i->makeSound();
 	j->makeSound();
 	
+	Dog *dogo = new Dog;
+	Dog pochi(*dogo);
+
+	delete dogo;
+
+	pochi.letsSee();
+
 	meta->makeSound();
 
+	delete a;
 	delete i;
 	delete j;
 	delete meta;

@@ -3,11 +3,18 @@
 Animal::Animal()
 {
 	this->type = "undefined";
+	out "Animal constructor" nl;
+}
+
+Animal::Animal(Animal const &model)
+{
+	this->type = model.type;
+	out "Animal copy constructor" nl;
 }
 
 Animal::~Animal()
 {
-	;
+	out "Animal destructor" nl;
 }
 
 std::string	Animal::getType() const
@@ -24,11 +31,12 @@ void	Animal::makeSound() const
 wrongAnimal::wrongAnimal()
 {
 	this->type = "undefined";
+	out "wrongAnimal constructor" nl;
 }
 
 wrongAnimal::~wrongAnimal()
 {
-	;
+	out "wrongAnimal destructor" nl;
 }
 
 std::string	wrongAnimal::getType() const

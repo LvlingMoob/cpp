@@ -1,6 +1,6 @@
-# include "animal.hpp"
-# include "goodPet.hpp"
-# include "wrongPet.hpp"
+#include "animal.hpp"
+#include "goodPet.hpp"
+#include "wrongPet.hpp"
 
 void	wrongMain()
 {
@@ -18,6 +18,14 @@ void	wrongMain()
 
 int	main()
 {
+	Animal *a = new Animal();
+	Animal b(*a);
+	Animal c = *a;
+
+	out a->getType() nl;
+	out b.getType() nl;
+	out c.getType() nl;
+
 	const Animal* meta = new Animal();
 	const Animal* j = new Dog();
 	const Animal* i = new Cat();
@@ -30,6 +38,7 @@ int	main()
 
 	delete i;
 	delete j;
+	delete a;
 	delete meta;
 
 	std::cout << std::endl;
