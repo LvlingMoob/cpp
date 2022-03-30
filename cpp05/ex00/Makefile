@@ -18,8 +18,8 @@ all : $(NAME)
 $(NAME) : $(OBJS)
 	$(CC) $(OBJS) -o $@
 
-%.o : %.c
-	$(CC) $(FLAGS) -I$(HEADERSFILE) $< -o $@
+%.o : %.cpp
+	$(CC) $(FLAGS) -I$(HEADERSFILE) -c $< -o $@
 
 clean :
 	rm -f $(OBJS)

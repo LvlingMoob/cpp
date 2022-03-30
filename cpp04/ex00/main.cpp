@@ -7,11 +7,10 @@ void	wrongMain()
 	const wrongAnimal* meta = new wrongAnimal();
 	const wrongAnimal* i = new wrongCat();
 
+	std::cout << std::endl;
 	std::cout << i->getType() << " " << std::endl;
-
 	i->makeSound();
 	meta->makeSound();
-
 	delete i;
 	delete meta;
 }
@@ -21,10 +20,13 @@ int	main()
 	Animal *a = new Animal();
 	Animal b(*a);
 	Animal c = *a;
+	Animal d;
 
 	out a->getType() nl;
 	out b.getType() nl;
 	out c.getType() nl;
+
+	d = *a;
 
 	const Animal* meta = new Animal();
 	const Animal* j = new Dog();
@@ -35,13 +37,11 @@ int	main()
 	i->makeSound();
 	j->makeSound();
 	meta->makeSound();
-
 	delete i;
 	delete j;
 	delete a;
 	delete meta;
 
-	std::cout << std::endl;
 	wrongMain();
 
 	return (0);

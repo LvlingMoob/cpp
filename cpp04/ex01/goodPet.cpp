@@ -11,7 +11,7 @@ Cat::Cat()
 	out "cat constructor" nl;
 }
 
-Cat::Cat(Cat const &model)
+Cat::Cat(Cat const &model) : Animal()
 {
 	this->type = "Cat";
 	this->cerv = new Brain(*model.cerv);
@@ -45,7 +45,7 @@ Dog::Dog()
 	out "Dog constructor" nl;
 }
 
-Dog::Dog(Dog const &model)
+Dog::Dog(Dog const &model) : Animal()
 {
 	this->type = "Dog";
 	this->cerv = new Brain(*model.cerv);

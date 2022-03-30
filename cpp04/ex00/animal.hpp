@@ -12,10 +12,12 @@ class	Animal
 	public :
 		Animal();
 		Animal(Animal const &);
-		~Animal();
+		virtual ~Animal();
 
 		virtual void	makeSound() const;
 		std::string		getType() const;
+
+		Animal	&operator=(Animal const &);
 
 	protected :
 		std::string type;
@@ -25,7 +27,7 @@ class	wrongAnimal
 {
 	public :
 		wrongAnimal();
-		~wrongAnimal();
+		virtual ~wrongAnimal();
 
 	virtual void	makeSound() const;
 	std::string		getType() const;

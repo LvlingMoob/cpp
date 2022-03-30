@@ -20,9 +20,9 @@ class Form
 
 	private :
 		std::string	_name;
-		bool		_signed = false;
-		int			_g2ex = 0;
-		int			_g2sign = 0;
+		bool		_signed;
+		int			_g2ex;
+		int			_g2sign;
 };
 
 std::ostream	&operator<<(std::ostream &, Form &);

@@ -2,6 +2,9 @@
 
 Form::Form(std::string name, int g2sign, int g2ex) : _name(name)
 {
+	this->_g2sign = 0;
+	this->_g2ex = 0;
+	this->_signed = false;
 	try
 	{
 		if (g2sign < 0 || g2ex < 0)
