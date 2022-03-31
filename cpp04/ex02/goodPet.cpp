@@ -1,5 +1,4 @@
 #include "goodPet.hpp"
-#include "Brain.hpp"
 
 /******************* CAT *******************/
 Cat::Cat()
@@ -35,6 +34,14 @@ void	Cat::letsSee() const
 	out this->cerv->ideas[1] nl;
 }
 
+Cat	&Cat::operator=(Cat const &model)
+{
+	this->type = model.type;
+	*this->cerv = *model.cerv;
+	out "Cat equal operator overload" nl;
+	return (*this);
+}
+
 /******************* DOG *******************/
 Dog::Dog()
 {
@@ -67,4 +74,12 @@ void	Dog::letsSee() const
 void	Dog::makeSound() const
 {
 	std::cout << "wouaf" << std::endl;
+}
+
+Dog	&Dog::operator=(Dog const &model)
+{
+	this->type = model.type;
+	*this->cerv = *model.cerv;
+	out "Dog equal operator overload" nl;
+	return (*this);
 }

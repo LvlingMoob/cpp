@@ -2,19 +2,6 @@
 # include "goodPet.hpp"
 # include "wrongPet.hpp"
 
-void	wrongMain()
-{
-	const wrongAnimal* meta = new wrongAnimal();
-	const wrongAnimal* i = new wrongCat();
-
-	std::cout << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound();
-	meta->makeSound();
-	delete i;
-	delete meta;
-}
-
 int	main()
 {
 	Animal *a = new Dog();
@@ -33,9 +20,15 @@ int	main()
 	j->makeSound();
 
 	Dog *dogo = new Dog;
+	Dog cerber;
 	Dog pochi(*dogo);
+	cerber = *dogo;
+
+	delete dogo;
+
 	std::cout << pochi.getType() << std::endl;
 	pochi.letsSee();
+	cerber.letsSee();
 
 	meta->makeSound();
 
@@ -43,9 +36,6 @@ int	main()
 	delete i;
 	delete j;
 	delete meta;
-	delete dogo;
-
-	wrongMain();
 
 	return (0);
 }

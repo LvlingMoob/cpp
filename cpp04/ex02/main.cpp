@@ -14,11 +14,15 @@ int	main()
 	j->makeSound();
 	
 	Dog *dogo = new Dog;
+	Dog cerber;
 	Dog pochi(*dogo);
+	cerber = *dogo;
 
 	delete dogo;
 
+	std::cout << pochi.getType() << std::endl;
 	pochi.letsSee();
+	cerber.letsSee();
 
 	delete a;
 	delete i;

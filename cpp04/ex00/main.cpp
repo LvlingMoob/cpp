@@ -30,6 +30,8 @@ int	main()
 
 	const Animal* meta = new Animal();
 	const Animal* j = new Dog();
+	
+
 	const Animal* i = new Cat();
 
 	std::cout << j->getType() << " " << std::endl;
@@ -37,6 +39,13 @@ int	main()
 	i->makeSound();
 	j->makeSound();
 	meta->makeSound();
+
+	Cat l;
+	Cat k;
+
+	l = k;
+	l = *reinterpret_cast<const Cat*>(i);
+
 	delete i;
 	delete j;
 	delete a;

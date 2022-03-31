@@ -17,6 +17,13 @@ Animal::~Animal()
 	out "Animal destructor" nl;
 }
 
+Animal	&Animal::operator=(Animal const &model)
+{
+	this->type = model.type;
+	out "Animal operator overload" nl;
+	return (*this);
+}
+
 std::string	Animal::getType() const
 {
 	return (this->type);

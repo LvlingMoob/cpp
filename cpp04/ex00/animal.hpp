@@ -29,7 +29,7 @@ class	wrongAnimal
 		wrongAnimal();
 		virtual ~wrongAnimal();
 
-	virtual void	makeSound() const;
+	void	makeSound() const;
 	std::string		getType() const;
 
 	protected :

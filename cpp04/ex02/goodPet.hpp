@@ -13,6 +13,8 @@ class Cat : public AAnimal
 		void	makeSound() const;
 		void	letsSee() const;
 
+		Cat		&operator=(Cat const &);
+
 	private :
 		Brain *cerv;
 };
@@ -26,6 +28,8 @@ class Dog : public AAnimal
 
 		void	makeSound() const;
 		void	letsSee() const;
+
+		Dog		&operator=(Dog const &);
 
 	private :
 		Brain *cerv;

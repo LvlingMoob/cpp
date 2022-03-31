@@ -12,7 +12,6 @@ Animal::Animal(Animal const &model)
 	out "Animal copy constructor" nl;
 }
 
-
 Animal	&Animal::operator=(Animal const &model)
 {
 	this->type = model.type;
