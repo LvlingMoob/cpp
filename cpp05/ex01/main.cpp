@@ -1,6 +1,23 @@
 #include "bureaucrat.hpp"
 #include "form.hpp"
 
+void	canon_tester(Bureaucrat &officer1, Bureaucrat &officer2, Form &form1, Form &form2)
+{
+	Bureaucrat test(officer1);
+	Bureaucrat test2("unknown", 42);
+	test2 = officer2;
+
+	Form ftst1(form1);
+	Form ftst2("95D", 1, 1);
+	ftst2 = form2;
+
+	std::cout << test.getGrade() << std::endl;
+	std::cout << test2.getGrade() << std::endl;
+
+	std::cout << ftst1 << std::endl << std::endl; 
+	std::cout << ftst2 << std::endl << std::endl; 
+}
+
 int	main()
 {
 	Bureaucrat	officer1("Bob", 150);
@@ -18,6 +35,9 @@ int	main()
 	Form		form6("04C", -42, -21);
 	Form		form7("05C", 152, 171);
 	Form		form8("06C", -152, 171);
+
+
+	canon_tester(officer1, officer2, form1, form2);
 
 	std::cout << std::endl;
 

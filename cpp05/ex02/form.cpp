@@ -20,6 +20,23 @@ Form::Form(std::string name, int g2sign, int g2ex) : _name(name)
 	}
 }
 
+Form::Form(Form const &model)
+{
+	this->_name = model._name;
+	this->_signed = model._signed;
+	this->_g2ex = model._g2ex;
+	this->_g2sign = model._g2sign;
+}
+
+Form	&Form::operator=(Form const &model)
+{
+	this->_name = model.getName();
+	this->_signed = model.getStatus();
+	this->_g2ex = model.getExLvl();
+	this->_g2sign = model.getSignLvl();
+	return (*this);
+}
+
 void	Form::beSigned(const Bureaucrat &officer)
 {
 	try

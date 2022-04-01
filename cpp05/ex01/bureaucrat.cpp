@@ -17,6 +17,17 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 	}
 }
 
+Bureaucrat::Bureaucrat(Bureaucrat const &model) : _name(model._name)
+{
+	this->_grade = model._grade;
+}
+
+Bureaucrat	&Bureaucrat::operator=(Bureaucrat const &model)
+{
+	this->_grade = model._grade;
+	return (*this);
+}
+
 Bureaucrat::~Bureaucrat() {}	
 
 void	Bureaucrat::promotion()

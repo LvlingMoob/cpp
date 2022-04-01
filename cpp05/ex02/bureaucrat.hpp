@@ -9,12 +9,15 @@ class Bureaucrat
 {
 	public:
 		Bureaucrat(std::string, int);
+		Bureaucrat(Bureaucrat const &);
 		~Bureaucrat();
 
 		std::string	getName() const;
 		int			getGrade() const;
 		void		promotion();
 		void		retrogradation();
+
+		Bureaucrat	&operator=(Bureaucrat const &);
 
 	private:
 		const std::string	_name;

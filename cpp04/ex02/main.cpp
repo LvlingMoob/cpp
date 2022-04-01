@@ -28,6 +28,7 @@ int	main()
 	delete i;
 	delete j;
 
+	while(1);
 	// const AAnimal* meta = new AAnimal();
 	// std::cout << meta->getType() << " " << std::endl;
 	// delete meta;
