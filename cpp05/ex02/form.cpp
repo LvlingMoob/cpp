@@ -1,6 +1,4 @@
 #include "form.hpp"
-#include <stdlib.h>
-# include <fstream>
 
 /*-------------------- FORM --------------------*/
 
@@ -169,7 +167,7 @@ void	ShrubberyCreationForm::whatNeedsToBeDone() const
 		outfile << "	         }{{"					 << std::endl;
 		outfile << "	         }}{"					 << std::endl;
 		outfile << "	         {{}"					 << std::endl;
-		outfile << "		, -=-~{ .-^- _"				 << std::endl;
+		outfile << "       , -=-~{ .-^- _"				 << std::endl;
 		outfile.close();
 	}
 	else

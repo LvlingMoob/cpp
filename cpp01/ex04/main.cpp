@@ -8,7 +8,7 @@ void	send_out(std::string file_content, std::string file_name)
 
 	dest = file_name;
 	dest.append(".replace");
-	std::ofstream outfile (dest, std::ios::out);
+	std::ofstream outfile(dest, std::ios::out);
 	outfile << file_content;
 	outfile.close();
 }

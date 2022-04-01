@@ -4,6 +4,8 @@
 # include <iostream>
 # include <stdexcept>
 # include <string>
+# include <stdlib.h>
+# include <fstream>
 # include "form.hpp"
 
 class Form;
