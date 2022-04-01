@@ -4,12 +4,51 @@
 void	canon_tester(Bureaucrat &officer1, Bureaucrat &officer2)
 {
 	Bureaucrat test(officer1);
-	Bureaucrat test2("unknown", 42);
+	Bureaucrat test2("Joey", 42);
 	test2 = officer2;
 
-	std::cout << test.getGrade() << std::endl;
-	std::cout << test2.getGrade() << std::endl;
+	std::cout << "Bureaucrat" << std::endl;
+	std::cout << test << std::endl;
+	std::cout << test2 << std::endl;
+	std::cout << std::endl;
 }
+void	canon_tester(ShrubberyCreationForm &form1, ShrubberyCreationForm &form2)
+{
+	ShrubberyCreationForm frm1(form1);
+	ShrubberyCreationForm frm2("42A", "zoo");
+
+	frm2 = form2;
+
+	std::cout << "ShrubberyCreationForm" << std::endl;
+	std::cout << frm1 << std::endl << std::endl;
+	std::cout << frm2 << std::endl << std::endl;
+	std::cout << std::endl;
+}
+void	canon_tester(RobotomyRequestForm &form1, RobotomyRequestForm &form2)
+{
+	RobotomyRequestForm frm1(form1);
+	RobotomyRequestForm frm2("42B", "Chuck");
+
+	frm2 = form2;
+
+	std::cout << "RobotomyRequestForm" << std::endl;
+	std::cout << frm1 << std::endl << std::endl;
+	std::cout << frm2 << std::endl << std::endl;
+	std::cout << std::endl;
+}
+void	canon_tester(PresidentialPardonForm &form1, PresidentialPardonForm &form2)
+{
+	PresidentialPardonForm frm1(form1);
+	PresidentialPardonForm frm2("42C", "Nourice");
+
+	frm2 = form2;
+
+	std::cout << "PresidentialPardonForm" << std::endl;
+	std::cout << frm1 << std::endl << std::endl;
+	std::cout << frm2 << std::endl << std::endl;
+	std::cout << std::endl;
+}
+
 
 int	main()
 {
@@ -20,34 +59,36 @@ int	main()
 
 	std::cout << std::endl;
 
-	Form		form1("28B", 42, 21);
+	ShrubberyCreationForm form1("28B", "jardin");
+	ShrubberyCreationForm form2("29B", "parc");
+	RobotomyRequestForm form3("28B", "Karl");
+	RobotomyRequestForm form4("29B", "chuck");
+	PresidentialPardonForm form5("28B", "Jodie");
+	PresidentialPardonForm form6("29B", "Moore");
 
 	canon_tester(officer1, officer2);
+	canon_tester(form1, form2);
+	canon_tester(form3, form4);
+	canon_tester(form5, form6);
+
+	officer1.executeForm(form2);
+	officer4.executeForm(form2);
+	form2.beSigned(officer4);
+	officer4.executeForm(form2);
 
 	std::cout << std::endl;
 
-	std::cout << officer1.getGrade() << std::endl;
-	std::cout << officer2.getGrade() << std::endl;
-	std::cout << officer3.getGrade() << std::endl;
-	std::cout << officer4.getGrade() << std::endl;
-
-	officer4.promotion();
-	officer1.retrogradation();
+	officer1.executeForm(form3);
+	officer4.executeForm(form3);
+	form3.beSigned(officer4);
+	officer4.executeForm(form3);
 
 	std::cout << std::endl;
 
-	std::cout << officer1.getGrade() << std::endl;
-	std::cout << officer4.getGrade() << std::endl;
-
-	std::cout << std::endl;
-
-	officer4.retrogradation();
-	officer1.promotion();
-
-	std::cout << officer1 << std::endl;
-	std::cout << officer2 << std::endl;
-	std::cout << officer3 << std::endl;
-	std::cout << officer4 << std::endl << std::endl;
+	officer1.executeForm(form5);
+	officer4.executeForm(form5);
+	form5.beSigned(officer4);
+	officer4.executeForm(form5);
 
 	return (0);
 }
