@@ -140,7 +140,7 @@ std::ostream	&operator<<(std::ostream &c_out, Form &model)
           /*****************************************************************/
 
 ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &model, std::string target)
-: Form(model.getName(), 145, 137)
+: Form("Shrubbery", 145, 137)
 {
 	this->setStatus(model.getStatus());
 	this->_target = target;
@@ -180,7 +180,7 @@ void	ShrubberyCreationForm::whatNeedsToBeDone() const
            /*****************************************************************/
 
 RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm const &model, std::string target)
-: Form(model.getName(), 72, 45)
+: Form("Robotomy", 72, 45)
 {
 	this->setStatus(model.getStatus());
 	this->_target = target;
@@ -206,7 +206,7 @@ void	RobotomyRequestForm::whatNeedsToBeDone() const
            /*****************************************************************/
 
 PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const &model, std::string target)
-: Form(model.getName(),25, 5)
+: Form("Pardon", 25, 5)
 {
 	this->setStatus(model.getStatus());
 	this->_target = target;

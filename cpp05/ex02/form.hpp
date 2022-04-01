@@ -43,8 +43,8 @@ std::ostream	&operator<<(std::ostream &, Form &);
 class ShrubberyCreationForm : public Form
 {
 	public :
-		ShrubberyCreationForm(std::string name, std::string target)
-			: Form(name, 145, 137) , _target(target) {};
+		ShrubberyCreationForm(std::string target)
+			: Form("Shrubbery", 145, 137) , _target(target) {};
 		ShrubberyCreationForm(ShrubberyCreationForm const &, std::string);
 		~ShrubberyCreationForm() {};
 
@@ -60,8 +60,8 @@ class ShrubberyCreationForm : public Form
 class RobotomyRequestForm : public Form
 {
 	public :
-		RobotomyRequestForm(std::string name, std::string target)
-			: Form(name, 72, 45) , _target(target) {};
+		RobotomyRequestForm(std::string target)
+			: Form("Robotomy", 72, 45) , _target(target) {};
 		RobotomyRequestForm(RobotomyRequestForm const &, std::string);
 		~RobotomyRequestForm() {};
 
@@ -76,8 +76,8 @@ class RobotomyRequestForm : public Form
 class PresidentialPardonForm : public Form
 {
 	public :
-		PresidentialPardonForm(std::string name, std::string target)
-			: Form(name, 25, 5) , _target(target) {};
+		PresidentialPardonForm(std::string target)
+			: Form("Pardon", 25, 5) , _target(target) {};
 		PresidentialPardonForm(PresidentialPardonForm const &, std::string);
 		~PresidentialPardonForm() {};
 

@@ -14,19 +14,19 @@ Intern::Intern()
 
 Form	*Intern::Shrubber(std::string target)
 {
-	Form	*form = new ShrubberyCreationForm("ShrubberyCreationForm", target);
+	Form	*form = new ShrubberyCreationForm(target);
 	return (form);
 }
 
 Form	*Intern::Robot(std::string target)
 {
-	Form	*form = new RobotomyRequestForm("RobotomyRequestForm", target);
+	Form	*form = new RobotomyRequestForm(target);
 	return (form);
 }
 
 Form	*Intern::PresidentialPardon(std::string target)
 {
-	Form	*form = new PresidentialPardonForm("PresidentialPardonForm", target);
+	Form	*form = new PresidentialPardonForm(target);
 	return (form);
 }
 

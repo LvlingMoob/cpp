@@ -15,7 +15,7 @@ void	canon_tester(Bureaucrat &officer1, Bureaucrat &officer2)
 void	canon_tester(ShrubberyCreationForm &form1, ShrubberyCreationForm &form2)
 {
 	ShrubberyCreationForm frm1(form1);
-	ShrubberyCreationForm frm2("42A", "zoo");
+	ShrubberyCreationForm frm2("zoo");
 
 	frm2 = form2;
 
@@ -27,7 +27,7 @@ void	canon_tester(ShrubberyCreationForm &form1, ShrubberyCreationForm &form2)
 void	canon_tester(RobotomyRequestForm &form1, RobotomyRequestForm &form2)
 {
 	RobotomyRequestForm frm1(form1);
-	RobotomyRequestForm frm2("42B", "Chuck");
+	RobotomyRequestForm frm2("Chuck");
 
 	frm2 = form2;
 
@@ -39,7 +39,7 @@ void	canon_tester(RobotomyRequestForm &form1, RobotomyRequestForm &form2)
 void	canon_tester(PresidentialPardonForm &form1, PresidentialPardonForm &form2)
 {
 	PresidentialPardonForm frm1(form1);
-	PresidentialPardonForm frm2("42C", "Nourice");
+	PresidentialPardonForm frm2("Nourice");
 
 	frm2 = form2;
 
@@ -59,12 +59,12 @@ int	main()
 
 	std::cout << std::endl;
 
-	ShrubberyCreationForm form1("28B", "jardin");
-	ShrubberyCreationForm form2("29B", "parc");
-	RobotomyRequestForm form3("28B", "Karl");
-	RobotomyRequestForm form4("29B", "chuck");
-	PresidentialPardonForm form5("28B", "Jodie");
-	PresidentialPardonForm form6("29B", "Moore");
+	ShrubberyCreationForm form1("jardin");
+	ShrubberyCreationForm form2("parc");
+	RobotomyRequestForm form3("Karl");
+	RobotomyRequestForm form4("chuck");
+	PresidentialPardonForm form5("Jodie");
+	PresidentialPardonForm form6("Moore");
 
 	canon_tester(officer1, officer2);
 	canon_tester(form1, form2);
