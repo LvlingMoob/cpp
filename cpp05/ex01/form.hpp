@@ -7,6 +7,7 @@ class Form
 {
 	public:
 		Form(std::string, int, int);
+		Form(Form const &);
 		~Form() {};
 
 		void	gradeTooHighExecption();
@@ -18,6 +19,7 @@ class Form
 		int			getExLvl() const;
 		bool		getStatus() const;
 
+		Form	&operator=(Form const &);
 	private :
 		std::string	_name;
 		bool		_signed;
