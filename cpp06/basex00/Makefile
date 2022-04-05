@@ -1,4 +1,4 @@
-NAME		= convert
+NAME		= cast
 
 CC			= clang++
 
@@ -11,7 +11,7 @@ FLAGS		= -std=c++98
 
 
 SRCS		=	$(SRCFILE)main.cpp\
-				$(SRCFILE)convert.cpp\
+				$(SRCFILE)caster.cpp\
 
 OBJS		= $(SRCS:.cpp=.o)
 
