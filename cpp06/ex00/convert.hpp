@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <stdexcept>
+#include <cmath>
 #include <string>
 
 #define out std::cout <<
@@ -37,6 +38,8 @@ class Convert
 		double	double_ret();
 		void	converter();
 		void	parsing();
+		int		stringtoi(std::string const);
+		void	stringtof(std::string);
 };
 
 #endif
