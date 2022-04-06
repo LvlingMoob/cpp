@@ -54,7 +54,7 @@ void	Convert::print() const
 	}
 	else
 	{
-		if (this->_chr >= 0 && this->_chr <= 32)
+		if ((this->_chr >= 0 && this->_chr <= 32) || this->_chr == 127)
 			out "char: Non displayable" nl;
 		else if (this->_chr < 0)
 			out "char: impossible" nl;
