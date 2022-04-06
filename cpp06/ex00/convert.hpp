@@ -15,7 +15,7 @@ class Convert
 		Convert(std::string const);
 		~Convert() {};
 
-		void	printer(void) const;
+		void	print(void) const;
 
 	private :
 		enum type
@@ -23,7 +23,11 @@ class Convert
 			CHR = 1,
 			INTEGER,
 			FLT,
-			DECIMAL
+			DECIMAL,
+			ERR,
+			P_INFF,
+			M_INFF,
+			NA
 		};
 
 		const std::string	_arg;
@@ -36,7 +40,7 @@ class Convert
 		int		int_ret();
 		float	float_ret();
 		double	double_ret();
-		void	converter();
+		void	caster();
 		void	parsing();
 		int		stringtoi(std::string const);
 		void	stringtof(std::string);

@@ -2,21 +2,82 @@
 
 Convert::Convert(std::string arg) : _arg(arg)
 {
-	this->_type = 0;
-	try
+	if (!arg.compare("+inf"))
+		this->_type = P_INFF;
+	else if (!arg.compare("-inf"))
+		this->_type = M_INFF;
+	else if (!arg.compare("nan"))
+		this->_type = NA;
+	else
 	{
-		parsing();
-		converter();
+		this->_type = 0;
+		try
+		{
+			parsing();
+			caster();
+		}
+		catch(const std::exception &e)
+		{
+			std::cerr << e.what() nl nl;
+			this->_type = ERR;
+		}
 	}
-	catch(const std::exception &e)
+}
+
+void	Convert::print() const
+{
+	if (this->_type == P_INFF || this->_type == M_INFF
+		|| this->_type == NA || this->_type == ERR)
 	{
-		std::cerr << e.what() << std::endl;
+		out "char: impossible" nl;
+		out "int: impossible" nl;
+		if (this->_type == P_INFF)
+		{
+			out "float: -inff" nl;
+			out "double: -inf" nl;
+		}
+		else if (this->_type == M_INFF)
+		{
+			out "float: inff" nl;
+			out "double: inf" nl;
+		}
+		else if (this->_type == NA)
+		{
+			out "float: nanf" nl;
+			out "double: nan" nl;
+		}
+		else
+		{
+			out "float: inpossible" nl;
+			out "double: inpossible" nl;
+		}
+	}
+	else
+	{
+		if (this->_chr >= 0 && this->_chr <= 32)
+			out "char: Non displayable" nl;
+		else if (this->_chr < 0)
+			out "char: impossible" nl;
+		else
+			out "char : " << this->_chr nl;
+		out "int : " << this->_integer nl;
+		if (this->_flt == this->_integer)
+			out "float : " << this->_flt << ".0f" nl;	
+		else
+			out "float : " << this->_flt << 'f' nl;
+		if (this->_dble == this->_integer)
+			out "double : " << this->_dble << ".0f" nl;
+		else
+			out "double : " << this->_dble nl;
 	}
 }
 
 void	Convert::parsing()
 {
-	int	i, f, point, sign, alpha = 0;
+	int	i = 0;
+	int point = 0;
+	int sign = 0;
+	int alpha = 0;
 
 	if (this->_arg[i] == '-' || this->_arg[i] == '+')
 		{i++; sign++;}
@@ -101,20 +162,34 @@ void	Convert::stringtof(std::string str)
 		this->_flt = static_cast<float>(val);
 	else if (this->_type == DECIMAL)
 		this->_dble = val;
-	out val nl;
 }
 
-void	Convert::converter()
+void	Convert::caster()
 {
 	if (this->_type != CHR)
 	{
 		if (this->_type == FLT || this->_type == DECIMAL)
 		{
 			this->stringtof(this->_arg);
+			if (this->_type == FLT)
+			{
+				this->_chr = static_cast<char>(this->_flt);
+				this->_integer = static_cast<int>(this->_flt);
+				this->_dble = static_cast<double>(this->_flt);
+			}
+			else
+			{
+				this->_chr = static_cast<char>(this->_dble);
+				this->_integer = static_cast<int>(this->_dble);
+				this->_flt = static_cast<float>(this->_dble);
+			}
 		}
 		else if (this->_type == INTEGER)
 		{
 			this->_integer = this->stringtoi(this->_arg);
+			this->_chr = static_cast<char>(this->_integer);
+			this->_flt = static_cast<float>(this->_integer);
+			this->_dble = static_cast<double>(this->_integer);
 		}
 	}
 	else

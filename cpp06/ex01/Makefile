@@ -1,17 +1,14 @@
-NAME		= cast
+NAME		= serial
 
-CC			= clang++
+CC			= c++
 
 HEADERSFILE	= ./
 
 SRCFILE		= ./
 
-#FLAGS		= -Wall -Werror -Wextra -std=c++98
-FLAGS		= -std=c++98
-
+FLAGS		= -Wall -Werror -Wextra -std=c++98
 
 SRCS		=	$(SRCFILE)main.cpp\
-				$(SRCFILE)caster.cpp\
 
 OBJS		= $(SRCS:.cpp=.o)
 

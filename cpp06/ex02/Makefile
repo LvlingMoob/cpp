@@ -1,4 +1,4 @@
-NAME		= convert
+NAME		= type
 
 CC			= c++
 
@@ -6,10 +6,11 @@ HEADERSFILE	= ./
 
 SRCFILE		= ./
 
-FLAGS		= -Wall -Werror -Wextra -std=c++98
+#FLAGS		= -Wall -Werror -Wextra -std=c++98
+FLAGS		= -std=c++98
 
 SRCS		=	$(SRCFILE)main.cpp\
-				$(SRCFILE)convert.cpp\
+				$(SRCFILE)classes.cpp\
 
 OBJS		= $(SRCS:.cpp=.o)
 

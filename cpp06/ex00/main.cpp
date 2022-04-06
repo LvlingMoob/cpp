@@ -6,11 +6,14 @@
 
 int main(int argc, char **argv)
 {
+	std::string arg;
+
 	if (argc < 2)
 		return (0);
-	std::string arg = argv[1];
-
+	
+	arg = argv[1];
 	Convert cast(arg);
-
+	
+	cast.print();
 	return (0);
 }
