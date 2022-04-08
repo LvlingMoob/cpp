@@ -112,7 +112,9 @@ void	Convert::parsing()
 	}
 	if (alpha && i > 1)
 		throw std::runtime_error("invalid entry : digits or char only");
-	if (i > 7)
+	if ((this->_type == INTEGER && i > 7)
+		|| (this->_type == INTEGER && i > 9)
+		|| (this->_type == INTEGER && i > 9))
 		throw std::runtime_error("et voila... t'abuses !");
 	if (!alpha && !point && !this->_type)
 		this->_type = INTEGER;
