@@ -20,11 +20,11 @@ int	main()
 	try
 	{
 		easyfind(vec, 4);
-		std::cout << "easy find!" << std::endl;
+		std::cout << "4 : foundd!" << std::endl;
 		easyfind(vec, 8);
-		std::cout << "easy find!" << std::endl;
+		std::cout << "8 : foundd!" << std::endl;
 		easyfind(vec, 12);
-		std::cout << "easy find!" << std::endl;
+		std::cout << "12 : foundd!" << std::endl;
 	}
 	catch (std::exception & e)
 	{
