@@ -42,7 +42,8 @@ void Span::addNumber(std::vector<int>::iterator const &begin, std::vector<int>::
 {
 	std::vector<int>::iterator iter = begin;
 	
-	while (iter != end) {
+	while (iter != end)
+	{
     	if (vec.size() == n)
 			throw std::runtime_error("Span is already full!");
     	

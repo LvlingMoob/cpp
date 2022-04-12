@@ -9,6 +9,7 @@ SRCFILE		= ./
 FLAGS		= -Wall -Werror -Wextra -std=c++98
 
 SRCS		=	$(SRCFILE)main.cpp\
+				$(SRCFILE)span.cpp\
 
 OBJS		= $(SRCS:.cpp=.o)
 
